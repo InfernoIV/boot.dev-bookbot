@@ -1,3 +1,6 @@
+#imports
+from stats import count_words
+
 #main function
 def main() :
     #define the path of the book
@@ -17,10 +20,6 @@ def get_book_text(path_to_file) :
         file_contents = f.read()
     return file_contents
 
-def count_words(file_contents):
-    #split the file contents
-    words = file_contents.split()
-    #return the length of the array
-    return len(words)
+
 
 main()

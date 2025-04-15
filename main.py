@@ -1,22 +1,15 @@
+#python3 main.py
+
+
 #imports
-from stats import count_words, count_characters
+from stats import count_words, count_characters, sort_characters
 
 #main function
 def main() :
     #define the path of the book
-    path = "./books/frankenstein.txt"
-    #get the content of the book
-    book_text = get_book_text(path)
+    path_to_file = "books/frankenstein.txt"
+    print_report(path_to_file)
 
-    #get the amount of words
-    words_amount = count_words(book_text)
-    #print the text to console
-    print(f"{words_amount} words found in the document")
-
-    #get the amount of characters
-    character_amount = count_characters(book_text)
-    #print the text to console
-    print(f"{character_amount}")
 
 #function to get the content of a file
 def get_book_text(path_to_file) :
@@ -26,6 +19,36 @@ def get_book_text(path_to_file) :
         file_contents = f.read()
     return file_contents
 
+
+def print_report(path_to_file):
+    #get the content of the book
+    book_text = get_book_text(path_to_file)
+
+    #get the amount of words
+    words_amount = count_words(book_text)
+    #get the amount of characters
+    character_list = count_characters(book_text)
+    #sort the list
+    character_list_sorted = sort_characters(character_list)
+
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {path_to_file}...") 
+    
+    print("----------- Word Count ----------")
+    #print the text to console
+    print(f"Found {words_amount} total words")
+  
+    print("--------- Character Count -------")
+    #print the text to console
+    
+    #for each key
+    for character in character_list_sorted:
+        #print(f"character: {character}")
+        #if not a special character
+        if character["name"].isalpha():
+            #print to console
+            print(f"{character["name"]}: {character["num"]}")
+            #f: 8451
 
 
 main()
